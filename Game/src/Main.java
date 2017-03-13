@@ -3,6 +3,7 @@
  */
 public class Main {
     int x = 13;
+    int y = 69;
 
     public static void main(String[] args) {
         //no kam

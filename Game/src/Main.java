@@ -4,4 +4,8 @@
 public class Main {
     int x = 13;
 
+    public static void main(String[] args) {
+        //no kam
+    }
+
 }

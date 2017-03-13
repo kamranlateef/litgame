@@ -4,4 +4,7 @@
 public class Main {
     int x = 13;
 
+
+    int StepCounter = 0;
+
 }

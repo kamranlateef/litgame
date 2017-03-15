@@ -7,4 +7,7 @@ public class Main {
 
     int StepCounter = 0;
 
+    int new = 5;
+
+
 }

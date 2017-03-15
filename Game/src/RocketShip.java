@@ -1,8 +1,6 @@
-public class RocketShip {//extends Sprite{
+public class RocketShip {
 
     public RocketShip(){
-
-
 
     }
 

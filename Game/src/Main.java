@@ -12,6 +12,8 @@ public class Main {
 
     int lateef = 5;
 
+    int Dho = 10;
+
     public static void main(String[] args) {
 
     }

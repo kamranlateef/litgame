@@ -7,7 +7,14 @@ public class Main {
 
     int StepCounter = 0;
 
-    int new = 5;
+    int ne = 5;
+
+
+    int lateef = 5;
+
+    public static void main(String[] args) {
+
+    }
 
 
 }

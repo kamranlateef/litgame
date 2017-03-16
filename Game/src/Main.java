@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
     public Main(){
 
-        keys = new boolean[512]; //should be enough to hold any key code.
+        keys = new boolean[513]; //should be enough to hold any key code.
 
         RocketShip = new RocketShip();
         Derek = new SpaceShip1(400, 400, NORTH);

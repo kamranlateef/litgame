@@ -12,4 +12,19 @@ public class Main {
         //km
     }
 
+
+    int StepCounter = 0;
+
+    int ne = 5;
+
+
+    int lateef = 5;
+
+    int Dho = 10;
+
+    public static void main(String[] args) {
+
+    }
+
+
 }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
     public static final int NORTH = 90, SOUTH = 270, WEST = 180, EAST = 0, NE = 45, NW = 135, SW = 225, SE = 315;
 
 
-    private Sprite RocketShip;
+    private Sprite Haiti;
     private SpaceShip1 Derek;
     private SmallAsteroid Tony;
     private MediumAsteroid Lateef;
@@ -38,9 +38,11 @@ import java.util.ArrayList;
 
         keys = new boolean[513]; //should be enough to hold any key code.
 
-        RocketShip = new RocketShip();
+        Haiti = new RocketShip();
         Derek = new SpaceShip1(400, 400, NORTH);
-
+        Tony = new SmallAsteroid(500, 500, NORTH);
+        Lateef = new MediumAsteroid(300, 200, NORTH);
+        Jack = new LargeAsteroid(100, 100, NORTH);
 
 
         Level = 0;
@@ -49,14 +51,12 @@ import java.util.ArrayList;
 
 
         obstacles = new ArrayList<Sprite>();
+        obstacles.add(Derek);
+        obstacles.add(Tony);
+        obstacles.add(Lateef);
+        obstacles.add(Jack);
 
-//        obstacles.add(Tony);
-//        obstacles.add(otter);
-//        obstacles.add(Billy);
-//        obstacles.add(Derek);
-//        obstacles.add(Steve);
-//        obstacles.add(Henrey);
-//        obstacles.add(Amanda);
+
 
 
 
@@ -73,8 +73,8 @@ import java.util.ArrayList;
 
                 //move the frog up
                 if(keys[KeyEvent.VK_W]){
-                    RocketShip.setDir(Sprite.NORTH);
-                    RocketShip.update();
+                    Haiti.setDir(Sprite.NORTH);
+                    Haiti.update();
                     keys[KeyEvent.VK_W] = false; //probably.
                 }
 
@@ -85,8 +85,8 @@ import java.util.ArrayList;
                     o.update();
 //                    System.out.println("check");
 
-                    if(RocketShip.intersects(o) == true){
-                        RocketShip.setLoc(new Point(400, 400));
+                    if(Haiti.intersects(o) == true){
+                        Haiti.setLoc(new Point(400, 400));
                         System.out.println("hit");
                         Lives--;
                     }
@@ -120,24 +120,24 @@ import java.util.ArrayList;
 
                 //move the frog down
                 if(keys[KeyEvent.VK_S]){
-                    RocketShip.setDir(Sprite.SOUTH);
-                    RocketShip.update();
+                    Haiti.setDir(Sprite.SOUTH);
+                    Haiti.update();
                     keys[KeyEvent.VK_S] = false; //probably.
                 }
 
 
                 //move the frog Left
                 if(keys[KeyEvent.VK_A]){
-                    RocketShip.setDir(Sprite.WEST);
-                    RocketShip.update();
+                    Haiti.setDir(Sprite.WEST);
+                    Haiti.update();
                     keys[KeyEvent.VK_A] = false; //probably.
                 }
 
 
                 //move the frog Right
                 if(keys[KeyEvent.VK_D]){
-                    RocketShip.setDir(Sprite.EAST);
-                    RocketShip.update();
+                    Haiti.setDir(Sprite.EAST);
+                    Haiti.update();
                     keys[KeyEvent.VK_D] = false; //probably.
                 }
 
@@ -164,20 +164,6 @@ import java.util.ArrayList;
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -196,10 +182,14 @@ import java.util.ArrayList;
         }
 
 
-        RocketShip.draw(g2);
 
 
+        g2.setColor(Color.BLUE);
+        g2.drawString("Lives:" + Lives, 300, 300 );
+        g2.drawString("Level:" + Level, 300, 320 );
 
+
+        Haiti.draw(g2);
 
 
 

@@ -71,16 +71,21 @@ import java.util.ArrayList;
             public void actionPerformed(ActionEvent actionEvent) {
 
 
-                //move the frog up
+//                move the frog up
                 if(keys[KeyEvent.VK_W]){
                     Haiti.setDir(Sprite.NORTH);
                     Haiti.setSpeed(5);
                     Haiti.update();
-                    Haiti.setSpeed(5);
 
                     keys[KeyEvent.VK_W] = false; //probably.
 
                 }
+//
+//                if(keys[KeyEvent.VK_W]){
+//                    Haiti.setDir(Sprite.NORTH);
+//                    Haiti.setSpeed(5);
+//                    Haiti.update();
+//                }
 
                 //update each obstacle
                 //check for collisions

@@ -107,6 +107,11 @@ import java.util.ArrayList;
                 if(Lives == 0 || Lives < 0){
                     timer.stop();
                 }
+                if (Haiti.getLoc().getX()>1000)
+                    Haiti.setLoc(new Point(0, (int)Haiti.getLoc().getY()));
+
+                if (Haiti.getLoc().getX()<0)
+                    Haiti.setLoc(new Point(1000, (int)Haiti.getLoc().getY()));
 
 
 

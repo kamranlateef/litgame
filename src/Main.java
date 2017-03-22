@@ -71,21 +71,21 @@ import java.util.ArrayList;
             public void actionPerformed(ActionEvent actionEvent) {
 
 
-//                move the frog up
-                if(keys[KeyEvent.VK_W]){
-                    Haiti.setDir(Sprite.NORTH);
-                    Haiti.setSpeed(5);
-                    Haiti.update();
+//                move rocketship in direction
 
-                    keys[KeyEvent.VK_W] = false; //probably.
 
-                }
-//
-//                if(keys[KeyEvent.VK_W]){
-//                    Haiti.setDir(Sprite.NORTH);
-//                    Haiti.setSpeed(5);
-//                    Haiti.update();
-//                }
+
+                    if(keys[KeyEvent.VK_W] = true) {
+                        Haiti.setDir(Haiti.getDir());
+                        Haiti.setSpeed(10);
+                        Haiti.update();
+//                   keys[KeyEvent.VK_W] = false; //probably.
+                    }
+
+
+
+
+
 
                 //update each obstacle
                 //check for collisions
@@ -113,7 +113,6 @@ import java.util.ArrayList;
 
                 if(Level == 1){
 
-
                 }
 
                 if(Level == 2){
@@ -128,10 +127,10 @@ import java.util.ArrayList;
 
                 //decrease the speed of the rocket ship
                 if(keys[KeyEvent.VK_S]){
-                    Haiti.setDir(Sprite.SOUTH);
-                    Haiti.setSpeed(0);
+                    //Haiti.setDir(Sprite.SOUTH);
+                    Haiti.setSpeed(Haiti.getSpeed()-5);
                     Haiti.update();
-                    keys[KeyEvent.VK_S] = false; //probably.
+                    //keys[KeyEvent.VK_S] = false; //probably.
                 }
 
 

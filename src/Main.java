@@ -228,7 +228,7 @@ import java.util.ArrayList;
 
         //sets ups the panel and frame.
     public static void main(String[] args) {
-        JFrame window = new JFrame("Frogger Project: Matt Ludwig");
+        JFrame window = new JFrame("Asteroid Project: Ludwig, Ho, Lateef");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT + 22); //(x, y, w, h) 22 due to title bar.
 

@@ -18,6 +18,8 @@ public class Sprite {
     private int speed; //Number of pixels moved each frame.
     private int id;
     public static final int NORTH = 90, SOUTH = 270, WEST = 180, EAST = 0, NE = 45, NW = 135, SW = 225, SE = 315;
+    int x = (int)(Math.random()*10);
+    int y = (int)(Math.random()*600);
 
 
     public Sprite(int x, int y, int direction) {
@@ -53,6 +55,29 @@ public class Sprite {
         int dx = (int) (Math.cos(Math.toRadians(dir)) * speed);
         int dy = -(int) (Math.sin(Math.toRadians(dir)) * speed);
         loc.translate(dx, dy);
+
+//        if(getLoc().getX() < -5){
+//            //setSpeed(-getSpeed());
+//            //setLoc(new Point(x,y));
+//            setLoc(new Point(x, (int)getLoc().getY()*y));
+//        }
+//        if(getLoc().getX() > 1005 ){
+//            //setSpeed(-getSpeed());
+//            //setLoc(new Point(x,y));
+//            setLoc(new Point(x, (int)getLoc().getY()*y));
+//
+//        }
+//        if(getLoc().getY() < -5){
+//            //setLoc(new Point(x,y));
+//            setLoc(new Point(x, (int)getLoc().getY()*y));
+//
+//        }
+//        if(getLoc().getY() > 605){
+//            //setLoc(new Point(x,y));
+//            setLoc(new Point(x, (int)getLoc().getY()*y));
+//
+//        }
+
     }
 
     /**

@@ -28,6 +28,8 @@ import java.util.ArrayList;
     private int Level;
     private int Lives;
     private ArrayList<Sprite> obstacles;
+    int x = (int)(Math.random()*1000);
+    int y = (int)(Math.random()*600);
 
 
 
@@ -39,14 +41,15 @@ import java.util.ArrayList;
         keys = new boolean[513]; //should be enough to hold any key code.
 
         Haiti = new RocketShip();
-        Derek = new SpaceShip1(400, 400, NORTH);
-        Tony = new SmallAsteroid(500, 500, NORTH);
+        Derek = new SpaceShip1(400, 200, NORTH);
+        Tony = new SmallAsteroid(500, 300, NORTH);
         Lateef = new MediumAsteroid(300, 200, NORTH);
         Jack = new LargeAsteroid(100, 100, NORTH);
 
 
+
         Level = 0;
-        Lives = 5;
+        Lives = 50;
 
 
 
@@ -101,6 +104,17 @@ import java.util.ArrayList;
                     }
 
 
+                }
+
+                for(Sprite o: obstacles){
+                    if(o.getLoc().getX() < -5){
+                        //o.setSpeed(-o.getSpeed());
+                        o.setLoc(new Point(x,y));
+                    }
+                    if(o.getLoc().getX() > 1005 ){
+                        //o.setSpeed(-o.getSpeed());
+                        o.setLoc(new Point(x,y));
+                    }
                 }
 
 

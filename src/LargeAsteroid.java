@@ -6,14 +6,13 @@ public class LargeAsteroid extends Asteroid {
     public LargeAsteroid(int x, int y, int direction){
         super(x, y, WEST);
         setPic("Asteroid.png", WEST);
-        setSpeed(10);
+        setSpeed(4);
 
     }
 
 
     @Override
     public void update() {
-
 
         super.update();
 

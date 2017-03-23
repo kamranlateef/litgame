@@ -6,7 +6,7 @@ public class MediumAsteroid extends Asteroid {
     public MediumAsteroid(int x, int y, int direction){
         super(x, y, WEST);
         setPic("unnamed.png", WEST);
-        setSpeed(10);
+        setSpeed(4);
 
     }
 

@@ -21,9 +21,15 @@ import java.util.ArrayList;
 
     private Sprite Haiti;
     private SpaceShip1 Derek;
+
     private SmallAsteroid Tony;
     private MediumAsteroid Lateef;
-    private LargeAsteroid Jack;
+
+    private LargeAsteroid A;
+    private LargeAsteroid B;
+    private LargeAsteroid C;
+    private LargeAsteroid D;
+    private LargeAsteroid E;
 
     private int Level;
     private int Lives;
@@ -44,9 +50,14 @@ import java.util.ArrayList;
         Derek = new SpaceShip1(400, 200, NORTH);
         Tony = new SmallAsteroid(500, 300, NORTH);
         Lateef = new MediumAsteroid(300, 200, NORTH);
-        Jack = new LargeAsteroid(100, 100, NORTH);
 
 
+
+        A = new LargeAsteroid(0, 100, NORTH);
+        B = new LargeAsteroid(100, 200, NORTH);
+        C = new LargeAsteroid(300, 300, NORTH);
+        D = new LargeAsteroid(0, 400, NORTH);
+        E = new LargeAsteroid(400, 500, NORTH);
 
         Level = 0;
         Lives = 50;
@@ -55,12 +66,12 @@ import java.util.ArrayList;
 
         obstacles = new ArrayList<Sprite>();
         obstacles.add(Derek);
-
-        obstacles.add(Jack);
-
-
-        obstacles.add(Tony);
-        obstacles.add(Lateef);
+//
+//        obstacles.add(A);
+//        obstacles.add(B);
+//        obstacles.add(C);
+//        obstacles.add(D);
+//        obstacles.add(E);
 
 
         System.out.println();

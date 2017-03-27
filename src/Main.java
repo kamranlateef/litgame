@@ -127,6 +127,26 @@ import java.util.ArrayList;
                 if (Haiti.getLoc().getX()<0)
                     Haiti.setLoc(new Point(1000, (int)Haiti.getLoc().getY()));
 
+                if (Haiti.getLoc().getY()>600)
+                    Haiti.setLoc(new Point((int)Haiti.getLoc().getX(), 0));
+
+                if (Haiti.getLoc().getY()<0)
+                    Haiti.setLoc(new Point((int)Haiti.getLoc().getX(), 600));
+
+
+
+                if(Jack.getLoc().getX() > Main.FRAMEWIDTH) {
+                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
+                }
+                if(Jack.getLoc().getX()<0){
+                    Jack.setLoc(new Point((int)Math.random()*Main.FRAMEWIDTH, (int)(Math.random()*Main.FRAMEHEIGHT)));
+                }
+                if (Jack.getLoc().getY()>Main.FRAMEHEIGHT)
+                    Jack.setLoc(new Point((int)Math.random()*Main.FRAMEWIDTH, (int)(Math.random()*Main.FRAMEHEIGHT)));
+                if (Jack.getLoc().getY()<0)
+                    Jack.setLoc(new Point((int)Math.random()*Main.FRAMEWIDTH, (int)(Math.random()*Main.FRAMEHEIGHT)));
+
+
 
 
 

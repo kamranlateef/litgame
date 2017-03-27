@@ -26,10 +26,13 @@ public class Sprite {
         loc = new Point(x, y);
         dir = direction;
         setPic("aster.png", NORTH);
-        speed = 2;
+        speed = 5;
 
         id = nextID;
         nextID++;
+    }
+    public Sprite(){
+
     }
 
     /**

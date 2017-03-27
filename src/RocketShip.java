@@ -5,7 +5,8 @@ public class RocketShip extends Sprite {
 
         setPic("RocketShip.png", NORTH);
         //moves the height of the image.
-        setSpeed(this.getBoundingRectangle().height);
+//        setSpeed(this.getBoundingRectangle().height);
+        //setSpeed(0);
 
 
 

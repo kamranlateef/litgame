@@ -66,12 +66,12 @@ import java.util.ArrayList;
 
         obstacles = new ArrayList<Sprite>();
         obstacles.add(Derek);
-//
-//        obstacles.add(A);
-//        obstacles.add(B);
-//        obstacles.add(C);
-//        obstacles.add(D);
-//        obstacles.add(E);
+
+        obstacles.add(A);
+        obstacles.add(B);
+        obstacles.add(C);
+        obstacles.add(D);
+        obstacles.add(E);
 
 
         System.out.println();

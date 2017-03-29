@@ -30,6 +30,7 @@ public class Main extends JPanel {
     private ArrayList<Sprite> obstacles;
     int x = (int) (Math.random() * 1000);
     int y = (int) (Math.random() * 600);
+    int z = 10;
 
 
     public Main() {

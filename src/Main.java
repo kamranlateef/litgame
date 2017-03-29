@@ -31,6 +31,7 @@ public class Main extends JPanel {
     int x = (int) (Math.random() * 1000);
     int y = (int) (Math.random() * 600);
     int z = 10;
+    int dho = 5;
 
 
     public Main() {

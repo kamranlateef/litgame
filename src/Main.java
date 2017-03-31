@@ -24,6 +24,8 @@ public class Main extends JPanel {
     private SmallAsteroid Tony;
     private MediumAsteroid Lateef;
     private LargeAsteroid Jack;
+    private Bullet bull;
+
 
     private int Level;
     private int Lives;
@@ -43,6 +45,7 @@ public class Main extends JPanel {
         Tony = new SmallAsteroid(500, 300, NORTH);
         Lateef = new MediumAsteroid(300, 200, NORTH);
         Jack = new LargeAsteroid(100, 100, NORTH);
+        //bull = new Bullet();
 
 
 
@@ -51,13 +54,14 @@ public class Main extends JPanel {
 
 
         obstacles = new ArrayList<Sprite>();
-//        obstacles.add(Derek);
-//
-//        obstacles.add(Jack);
-//
-//
-//        obstacles.add(Tony);
-//        obstacles.add(Lateef);
+        obstacles.add(Derek);
+
+        obstacles.add(Jack);
+
+
+        obstacles.add(Tony);
+        obstacles.add(Lateef);
+       // obstacles.add(bull);
         //
 
 
@@ -81,7 +85,7 @@ public class Main extends JPanel {
                     keys[KeyEvent.VK_S] = false; //probably.
                 }
                 if (keys[KeyEvent.VK_X]) { // we can try to get spacebar later.
-
+                    //obstacles.add(bull);
                     keys[KeyEvent.VK_X] = false; //probably.
                 }
 

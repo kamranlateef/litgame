@@ -45,6 +45,7 @@ public class Main extends JPanel {
         Jack = new LargeAsteroid(100, 100, NORTH);
 
 
+
         Level = 0;
         Lives = 50;
 
@@ -57,6 +58,7 @@ public class Main extends JPanel {
 //
 //        obstacles.add(Tony);
 //        obstacles.add(Lateef);
+        //
 
 
         System.out.println();
@@ -78,6 +80,11 @@ public class Main extends JPanel {
                     Haiti.setSpeed(Haiti.getSpeed() - 5);
                     keys[KeyEvent.VK_S] = false; //probably.
                 }
+                if (keys[KeyEvent.VK_X]) { // we can try to get spacebar later.
+
+                    keys[KeyEvent.VK_X] = false; //probably.
+                }
+
                 //update each obstacle
                 //check for collisions
 

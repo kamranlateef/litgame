@@ -10,6 +10,9 @@ public class RocketShip extends Sprite {
 
 
     }
+//    public void Bullet(){
+//        setPic("bullet.png", NORTH);
+//    }
 
     @Override
     public void update(){

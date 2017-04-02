@@ -5,8 +5,8 @@ public class LargeAsteroid extends Asteroid {
 
     public LargeAsteroid(int x, int y, int direction){
         super(x, y, WEST);
-        setPic("LargeAsteroid.png", WEST);
-        setSpeed(4);
+        setPic("Asteroid.png", WEST);
+        setSpeed(5);
 
     }
 

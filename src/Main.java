@@ -12,8 +12,26 @@ import java.util.ArrayList;
 
 public class Main extends JPanel {
 
+//    To do:
+//
+//
+//
+//-complete large asteroids, go off screen and come back on the other side, spawn randomly on screen and go in random directions
+//-add working bullets
+//-have large asteroids turn into 2 med asteroids when hit
+//-have two med asteroids turn into 2 small asteroids when hit
+//-add point system
+//	          -small: 20
+//            -med: 50
+//            -large: 100
+//            -spaceships: 200
+//            -make rocketship explode when it gets hit
+//-add crazy levels and stuff
+
+
+
     //instance fields for the general environment
-    public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 600;
+    public static final int FRAMEWIDTH = 1430, FRAMEHEIGHT = 1000;
     private Timer timer;
     private boolean[] keys;
     public static final int NORTH = 90, SOUTH = 270, WEST = 180, EAST = 0, NE = 45, NW = 135, SW = 225, SE = 315;
@@ -23,17 +41,26 @@ public class Main extends JPanel {
     private SpaceShip1 Derek;
     private SmallAsteroid Tony;
     private MediumAsteroid Lateef;
+
     private LargeAsteroid Jack;
+    private LargeAsteroid Jill;
+    private LargeAsteroid Jeff;
+    private LargeAsteroid Jim;
+    private LargeAsteroid John;
+
+
+
+
     private Bullet bull;
 
 
     private int Level;
     private int Lives;
+    private int points;
+
     private ArrayList<Sprite> obstacles;
     int x = (int) (Math.random() * 1000);
     int y = (int) (Math.random() * 600);
-    int z = 10;
-    int dho = 5;
 
 
     public Main() {
@@ -41,14 +68,27 @@ public class Main extends JPanel {
         keys = new boolean[513]; //should be enough to hold any key code.
 
         Haiti = new RocketShip();
+
         Derek = new SpaceShip1(400, 200, NORTH);
+
         Tony = new SmallAsteroid(500, 300, NORTH);
+
+
         Lateef = new MediumAsteroid(300, 200, NORTH);
-        Jack = new LargeAsteroid(100, 100, NORTH);
-        //bull = new Bullet();
+
+
+        Jack = new LargeAsteroid(10, 10, NORTH);
+        Jill = new LargeAsteroid(100, 400, NORTH);
+        Jeff = new LargeAsteroid(500, 100, NORTH);
+        Jim = new LargeAsteroid(600, 300, NORTH);
+        John = new LargeAsteroid(200, 100, NORTH);
+
+
+        bull = new Bullet();
 
 
 
+        points = 0;
         Level = 0;
         Lives = 50;
 
@@ -57,12 +97,17 @@ public class Main extends JPanel {
         obstacles.add(Derek);
 
         obstacles.add(Jack);
+        obstacles.add(Jill);
+        obstacles.add(Jeff);
+        obstacles.add(Jim);
+        obstacles.add(John);
 
 
-        obstacles.add(Tony);
-        obstacles.add(Lateef);
-       // obstacles.add(bull);
-        //
+
+//        obstacles.add(Tony);
+//        obstacles.add(Lateef);
+//        obstacles.add(bull);
+
 
 
         System.out.println();
@@ -88,6 +133,12 @@ public class Main extends JPanel {
                     //obstacles.add(bull);
                     keys[KeyEvent.VK_X] = false; //probably.
                 }
+
+                if (keys[KeyEvent.VK_P]) {
+                    Lives += 50;
+                    keys[KeyEvent.VK_P] = false; //probably.
+                }
+
 
                 //update each obstacle
                 //check for collisions
@@ -120,13 +171,13 @@ public class Main extends JPanel {
                 if (Lives == 0 || Lives < 0) {
                     timer.stop();
                 }
-                if (Haiti.getLoc().getX() > 1000)
+                if (Haiti.getLoc().getX() > 1430)
                     Haiti.setLoc(new Point(0, (int) Haiti.getLoc().getY()));
 
                 if (Haiti.getLoc().getX() < 0)
                     Haiti.setLoc(new Point(1000, (int) Haiti.getLoc().getY()));
 
-                if (Haiti.getLoc().getY() > 600)
+                if (Haiti.getLoc().getY() > 1000)
                     Haiti.setLoc(new Point((int) Haiti.getLoc().getX(), 0));
 
                 if (Haiti.getLoc().getY() < 0)
@@ -206,7 +257,7 @@ public class Main extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.black);
-        g2.fillRect(0,0,1000,600);
+        g2.fillRect(0,0,1430,1000);
 
         for (Sprite o : obstacles) { //for each of the Sprites in the arrayList obstacles draw it
             o.draw(g2);
@@ -214,11 +265,20 @@ public class Main extends JPanel {
 
 
         g2.setColor(Color.BLUE);
-        g2.drawString("Lives:" + Lives, 300, 300);
-        g2.drawString("Level:" + Level, 300, 320);
+        g2.drawString("Lives:" + Lives, 100, 100);
+        g2.drawString("Level:" + Level, 100, 120);
 
 
         Haiti.draw(g2);
+
+
+        if(Lives == 0){
+            g2.drawString("GAME OVER", 500, 500);
+
+        }
+
+
+
 
 
     }

@@ -2,8 +2,8 @@
  * Created by kamran_lateef on 3/27/17.
  */
 public class Bullet extends Sprite{
-    public Bullet(){
-        super();
+    public Bullet(int x, int y, int direction, int speed){
+        super(x, y, EAST);
         setPic("bullet.png", WEST);
         setSpeed(10);
     }

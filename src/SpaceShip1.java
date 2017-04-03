@@ -6,8 +6,8 @@ import java.awt.*;
 public class SpaceShip1 extends Obstacle {
 
     public SpaceShip1(int x, int y, int direction) {
-        super(x, y, EAST);
-        setPic("", NORTH);
+        super(x, y, NORTH);
+        setPic("SpaceShip 2.png", NORTH);
         setSpeed(30);
 
 

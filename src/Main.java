@@ -26,9 +26,6 @@ public class Main extends JPanel {
 //            -large: 100
 //            -spaceships: 200
 //            -make rocketship explode when it gets hit
-//-add crazy levels and stuff
-    //add features add
-
 
 
     //instance fields for the general environment
@@ -76,6 +73,19 @@ public class Main extends JPanel {
 
 
         Lateef = new MediumAsteroid(300, 200, NORTH);
+<<<<<<<<< Temporary merge branch 1
+
+
+        Jack = new LargeAsteroid(10, 10, NORTH);
+        Jill = new LargeAsteroid(100, 400, NORTH);
+        Jeff = new LargeAsteroid(500, 100, NORTH);
+        Jim = new LargeAsteroid(600, 300, NORTH);
+        John = new LargeAsteroid(200, 100, NORTH);
+
+
+        //bull = new Bullet();
+=========
+>>>>>>>>> Temporary merge branch 2
 
 
         Jack = new LargeAsteroid(10, 10, NORTH);
@@ -87,8 +97,11 @@ public class Main extends JPanel {
 
         bull = new Bullet();
 
+<<<<<<<<< Temporary merge branch 1
+=========
 
 
+>>>>>>>>> Temporary merge branch 2
         points = 0;
         Level = 0;
         Lives = 50;

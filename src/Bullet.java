@@ -4,7 +4,11 @@
 public class Bullet extends Sprite{
     public Bullet(int x, int y, int direction, int speed){
         super(x, y, EAST);
-        setPic("bullet.png", WEST);
+        setPic("bullet1.png", WEST);
+        setSpeed(10);
+    }
+    public Bullet(){
+        setPic("bullet1.png", WEST);
         setSpeed(10);
     }
     @Override

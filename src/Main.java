@@ -21,7 +21,7 @@ public class Main extends JPanel {
 //-have large asteroids turn into 2 med asteroids when hit
 //-have two med asteroids turn into 2 small asteroids when hit
 //-add point system
-//	          -small: 20
+//           -small: 20
 //            -med: 50
 //            -large: 100
 //            -spaceships: 200
@@ -57,6 +57,8 @@ public class Main extends JPanel {
     private int points;
 
     private ArrayList<Sprite> obstacles;
+    private ArrayList<Bullet> ridemyoto;
+
     int x = (int) (Math.random() * 1000);
     int y = (int) (Math.random() * 600);
 
@@ -73,19 +75,6 @@ public class Main extends JPanel {
 
 
         Lateef = new MediumAsteroid(300, 200, NORTH);
-<<<<<<<<< Temporary merge branch 1
-
-
-        Jack = new LargeAsteroid(10, 10, NORTH);
-        Jill = new LargeAsteroid(100, 400, NORTH);
-        Jeff = new LargeAsteroid(500, 100, NORTH);
-        Jim = new LargeAsteroid(600, 300, NORTH);
-        John = new LargeAsteroid(200, 100, NORTH);
-
-
-        //bull = new Bullet();
-=========
->>>>>>>>> Temporary merge branch 2
 
 
         Jack = new LargeAsteroid(10, 10, NORTH);
@@ -97,11 +86,8 @@ public class Main extends JPanel {
 
         bull = new Bullet();
 
-<<<<<<<<< Temporary merge branch 1
-=========
+        bull = new Bullet((int)Haiti.getLoc().getX(), (int)Haiti.getLoc().getY(), Haiti.getDir(), Haiti.getSpeed()+5);
 
-
->>>>>>>>> Temporary merge branch 2
         points = 0;
         Level = 0;
         Lives = 50;
@@ -115,6 +101,9 @@ public class Main extends JPanel {
         obstacles.add(Jeff);
         obstacles.add(Jim);
         obstacles.add(John);
+
+        ridemyoto = new ArrayList<Bullet>();
+        ridemyoto.add(bull);
 
 
 
@@ -144,7 +133,7 @@ public class Main extends JPanel {
                     keys[KeyEvent.VK_S] = false; //probably.
                 }
                 if (keys[KeyEvent.VK_X]) { // we can try to get spacebar later.
-                    //obstacles.add(bull);
+                      obstacles.add(new Bullet((int)Haiti.getLoc().getX(), (int)Haiti.getLoc().getY(), Haiti.getDir(), Haiti.getSpeed()+5));
                     keys[KeyEvent.VK_X] = false; //probably.
                 }
 
@@ -161,53 +150,74 @@ public class Main extends JPanel {
                     o.update();
 //                    System.out.println("check");
 
-                    if (Haiti.intersects(o) == true) {
+                    if (Haiti.intersects(o) == true && o instanceof Bullet == false) {
                         Haiti.setLoc(new Point(400, 400));
                         System.out.println("hit");
                         Lives--;
                     }
+                    if(bull.intersects(o) == true && o instanceof Bullet == true){
+                        obstacles.remove(o);
+                    }
+                    for (int i = 0; i < obstacles.size(); i++) {
+                        Sprite s = obstacles.get(i);
+                        if(bull.intersects(s)){
+                            obstacles.remove(i);
+                            i--;
+                        }
+                    }
+
+
 
 
                 }
+
+
+
+
+                //screen 1430, 1000
 
                 for (Sprite o : obstacles) {
                     if (o.getLoc().getX() < -5) {
                         //o.setSpeed(-o.getSpeed());
-                        o.setLoc(new Point(x, y));
+                        //o.setLoc(new Point(x, y));
                     }
                     if (o.getLoc().getX() > 1005) {
                         //o.setSpeed(-o.getSpeed());
-                        o.setLoc(new Point(x, y));
+                        //o.setLoc(new Point(x, y));
                     }
                 }
+
+
 
 
                 if (Lives == 0 || Lives < 0) {
                     timer.stop();
                 }
+
+
                 if (Haiti.getLoc().getX() > 1430)
                     Haiti.setLoc(new Point(0, (int) Haiti.getLoc().getY()));
 
                 if (Haiti.getLoc().getX() < 0)
-                    Haiti.setLoc(new Point(1000, (int) Haiti.getLoc().getY()));
+                    Haiti.setLoc(new Point(1430, (int) Haiti.getLoc().getY()));
 
                 if (Haiti.getLoc().getY() > 1000)
                     Haiti.setLoc(new Point((int) Haiti.getLoc().getX(), 0));
 
                 if (Haiti.getLoc().getY() < 0)
-                    Haiti.setLoc(new Point((int) Haiti.getLoc().getX(), 600));
+                    Haiti.setLoc(new Point((int) Haiti.getLoc().getX(), 1000));
 
 
-                if (Jack.getLoc().getX() > Main.FRAMEWIDTH) {
-                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
-                }
-                if (Jack.getLoc().getX() < 0) {
-                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
-                }
-                if (Jack.getLoc().getY() > Main.FRAMEHEIGHT)
-                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
-                if (Jack.getLoc().getY() < 0)
-                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
+//                if (Jack.getLoc().getX() > Main.FRAMEWIDTH) {
+//                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
+//                }
+//                if (Jack.getLoc().getX() < 0) {
+//                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
+//                }
+//                if (Jack.getLoc().getY() > Main.FRAMEHEIGHT)
+//                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
+//                if (Jack.getLoc().getY() < 0)
+//                    Jack.setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
 
 
                 if (Level == 1) {
@@ -320,3 +330,4 @@ public class Main extends JPanel {
 
 
 }
+

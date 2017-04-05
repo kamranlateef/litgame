@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class RocketShip extends Sprite {
 
     public RocketShip(){
@@ -23,7 +25,20 @@ public class RocketShip extends Sprite {
     public void update(){
 
 
-        super.update();
+
+            if(getLoc().getX() > Main.FRAMEWIDTH) {
+                setLoc(new Point((int) Math.random() * Main.FRAMEWIDTH, (int) (Math.random() * Main.FRAMEHEIGHT)));
+            }
+            if(getLoc().getX()<0){
+                setLoc(new Point((int)Math.random()*Main.FRAMEWIDTH, (int)(Math.random()*Main.FRAMEHEIGHT)));
+            }
+            if (getLoc().getY()>Main.FRAMEHEIGHT)
+                setLoc(new Point((int)Math.random()*Main.FRAMEWIDTH, (int)(Math.random()*Main.FRAMEHEIGHT)));
+            if (getLoc().getY()<0)
+                setLoc(new Point((int)Math.random()*Main.FRAMEWIDTH, (int)(Math.random()*Main.FRAMEHEIGHT)));
+
+
+            super.update();
 
 
     }

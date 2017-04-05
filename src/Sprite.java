@@ -48,7 +48,7 @@ public class Sprite {
         g2.drawImage(op.filter(pic, null), loc.x, loc.y, null);
         //       g2.drawImage(pic, loc.x, loc.y, null);
         //     g2.rotate(-rotationRequired, loc.x+locationX, loc.y+locationX);
-        g2.draw(getBoundingRectangle());
+//        g2.draw(getBoundingRectangle());
     }
 
     /**

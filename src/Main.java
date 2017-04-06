@@ -1,10 +1,11 @@
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by kamran_lateef on 3/13/17.
@@ -17,15 +18,12 @@ public class Main extends JPanel {
 //
 //
 //-complete large asteroids, go off screen and come back on the other side, spawn randomly on screen and go in random directions
-//-add working bullets
-//-have large asteroids turn into 2 med asteroids when hit
 //-have two med asteroids turn into 2 small asteroids when hit
 //-add point system
-//           -small: 20
+//           -small: 100
 //            -med: 50
-//            -large: 100
+//            -large: 20
 //            -spaceships: 200
-//            -make rocketship explode when it gets hit
 
 
     //instance fields for the general environment
@@ -38,7 +36,9 @@ public class Main extends JPanel {
     private Sprite Haiti;
     private SpaceShip1 Derek;
     private SmallAsteroid Tony;
+    private SmallAsteroid Daniel;
     private MediumAsteroid Lateef;
+    private MediumAsteroid Ho;
 
     private LargeAsteroid Jack;
     private LargeAsteroid Jill;
@@ -59,8 +59,8 @@ public class Main extends JPanel {
     private ArrayList<Sprite> obstacles;
     private ArrayList<Bullet> ridemyoto;
 
-    int x = (int) (Math.random() * 1000);
-    int y = (int) (Math.random() * 600);
+    int x = (int) (Math.random() * 1430);
+    int y = (int) (Math.random() * 1000);
 
 
     public Main() {
@@ -69,24 +69,27 @@ public class Main extends JPanel {
 
         Haiti = new RocketShip();
 
-        Derek = new SpaceShip1(400, 200, NORTH);
+
+        Derek = new SpaceShip1(-1000, -1000, NORTH);
 
         Tony = new SmallAsteroid(500, 300, NORTH);
+        Daniel = new SmallAsteroid(100, 200, NORTH);
 
 
         Lateef = new MediumAsteroid(300, 200, NORTH);
+        Ho = new MediumAsteroid(100, 100, NORTH);
 
 
         Jack = new LargeAsteroid(10, 10, NORTH);
-        Jill = new LargeAsteroid(100, 400, NORTH);
-        Jeff = new LargeAsteroid(500, 100, NORTH);
-        Jim = new LargeAsteroid(600, 300, NORTH);
-        John = new LargeAsteroid(200, 100, NORTH);
+        Jill = new LargeAsteroid(100, 400, SW);
+        Jeff = new LargeAsteroid(500, 100, NW);
+        Jim = new LargeAsteroid(600, 300, EAST);
+        John = new LargeAsteroid(200, 100, SOUTH);
 
-
+//TODO: Remove all bull
         bull = new Bullet();
 
-        bull = new Bullet((int)Haiti.getLoc().getX(), (int)Haiti.getLoc().getY(), Haiti.getDir(), Haiti.getSpeed()+5);
+        bull = new Bullet((int)Haiti.getLoc().getX(), (int)Haiti.getLoc().getY(), EAST, Haiti.getSpeed()+5);
 
         points = 0;
         Level = 0;
@@ -94,7 +97,7 @@ public class Main extends JPanel {
 
 
         obstacles = new ArrayList<Sprite>();
-        obstacles.add(Derek);
+        obstacles.add(Derek); //The RocketShip
 
         obstacles.add(Jack);
         obstacles.add(Jill);
@@ -102,9 +105,7 @@ public class Main extends JPanel {
         obstacles.add(Jim);
         obstacles.add(John);
 
-        ridemyoto = new ArrayList<Bullet>();
-        ridemyoto.add(bull);
-
+        ridemyoto = new ArrayList<Bullet>(); //leave empty when game starts
 
 
 //        obstacles.add(Tony);
@@ -132,8 +133,8 @@ public class Main extends JPanel {
                     Haiti.setSpeed(Haiti.getSpeed() - 5);
                     keys[KeyEvent.VK_S] = false; //probably.
                 }
-                if (keys[KeyEvent.VK_X]) { // we can try to get spacebar later.
-                      obstacles.add(new Bullet((int)Haiti.getLoc().getX(), (int)Haiti.getLoc().getY(), Haiti.getDir(), Haiti.getSpeed()+5));
+                if (keys[KeyEvent.VK_X]) {
+                    ridemyoto.add(new Bullet((int)Haiti.getLoc().getX(), (int)Haiti.getLoc().getY(), EAST, Haiti.getSpeed()+5));
                     keys[KeyEvent.VK_X] = false; //probably.
                 }
 
@@ -141,35 +142,109 @@ public class Main extends JPanel {
                     Lives += 50;
                     keys[KeyEvent.VK_P] = false; //probably.
                 }
+                //rotate the rocketship left
+                if (keys[KeyEvent.VK_A]) {
+                    Haiti.rotateBy(20);
+//                    keys[KeyEvent.VK_A] = false; //probably.
+                }
+                //rotate rocketship right
+                if (keys[KeyEvent.VK_D]) {
+                    Haiti.rotateBy(-20);
+//                    keys[KeyEvent.VK_D] = false; //probably.
+                }
+
+
+                //make Spaceship1 Derek fire at the RocketShip Haiti
+//                if(timer.){
+//                Derek.setLoc(new Point(600, 600)
+//                }
+
 
 
                 //update each obstacle
                 //check for collisions
 
-                for (Sprite o : obstacles) {
+
+                for (int j = 0; j < obstacles.size(); j++) {
+                    Sprite o = obstacles.get(j);
+
                     o.update();
 //                    System.out.println("check");
 
-                    if (Haiti.intersects(o) == true && o instanceof Bullet == false) {
+
+                    if (Haiti.intersects(o) == true && o instanceof Obstacle) {
                         Haiti.setLoc(new Point(400, 400));
                         System.out.println("hit");
                         Lives--;
-                    }
-                    if(bull.intersects(o) == true && o instanceof Bullet == true){
-                        obstacles.remove(o);
-                    }
-                    for (int i = 0; i < obstacles.size(); i++) {
-                        Sprite s = obstacles.get(i);
-                        if(bull.intersects(s)){
-                            obstacles.remove(i);
-                            i--;
-                        }
+                        //maybe add a delay to the timer here
                     }
 
+
+                    for (int i = 0; i < ridemyoto.size(); i++) {
+                        if (o.intersects(ridemyoto.get(i))) {
+                            points += 20;
+                            ridemyoto.remove(i);
+                            obstacles.remove(j);
+
+                            Lateef.setLoc(o.getLoc());
+                            obstacles.add(Lateef);
+
+                            Ho.setLoc(o.getCenterPoint());
+                            obstacles.add(Ho);
+
+                            i = ridemyoto.size();
+
+                        }
+                        if(ridemyoto.get(i).intersects(Lateef) == true){
+                                ridemyoto.remove(i);
+                                obstacles.remove(Lateef);
+                                Tony.setLoc(o.getLoc());
+                                obstacles.add(Tony);
+                            }
+
+                        // currently removes large asteroid and replaces it with medium asteroids Ho and Lateef
+                        //figure out how to replace medium asteroids with 2 small ones
+
+
+                        //these lines cause the timer stop error / don't work
+
+//                            //if(ridemyoto.get(i).intersects(Lateef) == true){
+//                                //ridemyoto.remove(i);
+//                              //  obstacles.remove(Lateef);
+////                                Tony.setLoc(o.getLoc());
+////                                obstacles.add(Tony);
+//                            }
+////                            if(ridemyoto.get(i).intersects(Ho) == true){
+////                                //ridemyoto.remove(i);
+////                                obstacles.remove(Ho);
+////                                Daniel.setLoc(o.getCenterPoint());
+////                                obstacles.add(Daniel);
+////
+////                            }
+
+                    }
 
 
 
                 }
+
+
+
+                //bullets go away out of bounds
+                for (int j = 0; j < ridemyoto.size(); j++) {
+                    Bullet b = ridemyoto.get(j);
+                    if(b.getLoc().getX() > 1430 || b.getLoc().getX() < 0 ){
+                        ridemyoto.remove(b);
+                    }
+                    if(b.getLoc().getY() > 1000 || b.getLoc().getY() < 0 ){
+                        ridemyoto.remove(b);
+                    }
+
+
+                    b.update();
+
+                }
+
 
 
 
@@ -190,7 +265,7 @@ public class Main extends JPanel {
 
 
 
-                if (Lives == 0 || Lives < 0) {
+                if (Lives == 0 || Lives < 0 ) {
                     timer.stop();
                 }
 
@@ -234,21 +309,6 @@ public class Main extends JPanel {
                 }
 
 
-                //decrease the speed of the rocket ship
-
-
-                //rotate the rocketship left
-                if (keys[KeyEvent.VK_A]) {
-                    Haiti.rotateBy(20);
-//                    keys[KeyEvent.VK_A] = false; //probably.
-                }
-
-
-                //rotate rocketship right
-                if (keys[KeyEvent.VK_D]) {
-                    Haiti.rotateBy(-20);
-//                    keys[KeyEvent.VK_D] = false; //probably.
-                }
 
                 Haiti.update();
                 repaint();
@@ -286,11 +346,15 @@ public class Main extends JPanel {
         for (Sprite o : obstacles) { //for each of the Sprites in the arrayList obstacles draw it
             o.draw(g2);
         }
+        for(Bullet b : ridemyoto)
+            b.draw(g2);
 
 
         g2.setColor(Color.BLUE);
         g2.drawString("Lives:" + Lives, 100, 100);
+        g2.drawString("Points:" + points, 100, 140);
         g2.drawString("Level:" + Level, 100, 120);
+
 
 
         Haiti.draw(g2);
@@ -330,4 +394,5 @@ public class Main extends JPanel {
 
 
 }
+
 

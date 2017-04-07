@@ -438,11 +438,9 @@ public class Main extends JPanel {
             g2.drawString("GAME OVER", 500, 500);
 
         }
-        if (points == 4500) {
+        if (points > 4500) {
             g2.drawString("YOU WIN", 500, 500);
         }
-
-
 
 
 
